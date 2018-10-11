@@ -12,13 +12,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 
-# Handy aliases
-alias ls="ls -GFG"
-alias ll="ls -la"
-alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-alias psql="/Applications/Postgres.app/Contents/Versions/10/bin/psql"
-
 # Locales
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
