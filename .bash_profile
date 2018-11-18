@@ -2,7 +2,7 @@
 
 # Path
 export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/bin:$PATH"d
+export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
