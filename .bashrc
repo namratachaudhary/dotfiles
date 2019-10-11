@@ -1,32 +1,19 @@
-# Git branch in prompt.
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
+#
+# ~/.bashrc
+#
 
-PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] 🦊 "
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-# Find port
-findport() {
-  lsof -n -i4TCP:$1 | grep LISTEN
-}
+# don't put duplicate lines or lines starting with space in the history.
+# append to the history file, don't overwrite it
+shopt -s histappend
 
-# ghc-pkg-reset
-# Removes all installed GHC/cabal packages, but not binaries, docs, etc.
-# Use this to get out of dependency hell and start over, at the cost of some rebuilding time.
-function ghc-pkg-reset() {
-    read -p 'erasing all your user ghc and cabal packages - are you sure (y/n) ? ' ans
-    test x$ans == xy && ( \
-        echo 'erasing directories under ~/.ghc'; rm -rf `find ~/.ghc -maxdepth 1 -type d`; \
-        echo 'erasing ~/.cabal/lib'; rm -rf ~/.cabal/lib; \
-        # echo 'erasing ~/.cabal/packages'; rm -rf ~/.cabal/packages; \
-        # echo 'erasing ~/.cabal/share'; rm -rf ~/.cabal/share; \
-        )
-}
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+source ~/.bash_profile

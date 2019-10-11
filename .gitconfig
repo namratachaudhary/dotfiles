@@ -1,0 +1,11 @@
+[user]
+	email = chdhry.namrata@gmail.com
+	name = Namrata Chaudhary
+	
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[alias]
+	squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+	plog = log --graph --pretty=format:'%h -%d %s %n' --abbrev-commit --date=relative --branches
+[core]
+	editor = gedit

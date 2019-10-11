@@ -1,0 +1,4 @@
+alias ls="ls -GF --color=auto"
+alias ll="ls -la"
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+alias empty='rm -rf /home/namrata/.local/share/Trash/files'

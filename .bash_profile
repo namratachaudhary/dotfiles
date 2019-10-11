@@ -1,26 +1,27 @@
-# Add Homebrew `/usr/local/bin` and User `~/bin` to the `$PATH`
+#
+# ~/.bash_profile
+#
 
-# Path
-export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:$GOROOT/bin"
-export PATH=$PATH:$GOPATH/bin
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
+# Load ~/.bash_prompt, ~/.exports, ~/.bash_aliases and ~/.functions
 
-# Locales
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+	export TERM=gnome-256color
+elif infocmp xterm-256color >/dev/null 2>&1; then
+	export TERM=xterm-256color
+fi
 
-# Python related stuff
-source /usr/local/bin/virtualenvwrapper.sh
-export WORKON_HOME=~/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+source ~/.aliases
+source ~/.bash_prompt
+source ~/.exports
+source ~/.functions
 
-# Go Setup
-GOPATH=$HOME/go
-GOROOT=/usr/local/go/bin/go
+# Prefer US English and use UTF-8
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US"
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
+
+# Add tab completion for `defaults read|write NSGlobalDomain`
+complete -W "NSGlobalDomain" defaults
+
